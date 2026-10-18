@@ -151,7 +151,7 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} -770 -830 3 1 {name=M14
-W=1
+W=4
 L=0.15
 nf=1
 mult=1
