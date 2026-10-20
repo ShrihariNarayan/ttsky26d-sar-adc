@@ -78,6 +78,14 @@ foreach v 0 0.2 0.4 0.6 0.8 1.0 1.2
  let p_uv = (hend - vi)*1e6
  print vi pre_uv p_uv droop_uv
 end
+let s_m11 = vecmax(v(x1.x) - v(vin))
+let s_m8sg = vecmax(v(x1.p) - v(x1.n))
+let s_m8gd = vecmax(v(x1.n) - v(x1.x))
+let s_c2 = vecmax(v(x1.p) - v(x1.b))
+let s_m14 = vecmax(v(x1.x) - v(x1.net1))
+let s_m3 = vecmax(v(x1.p) - v(vdd))
+let s_xmax = vecmax(v(x1.x))
+print s_m11 s_m8sg s_m8gd s_c2 s_m14 s_m3 s_xmax
 .endc
 "}
 C {devices/launcher.sym} -350 -160 0 0 {name=h17 
