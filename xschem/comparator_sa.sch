@@ -108,10 +108,10 @@ C {lab_wire.sym} 0 -220 0 0 {name=p3 sig_type=std_logic lab=VDD
 }
 C {lab_wire.sym} -80 -150 0 0 {name=p1 sig_type=std_logic lab=ckb
 }
-C {sky130_fd_pr/pfet_01v8.sym} -180 -10 0 0 {name=M1
-W=4
+C {sky130_fd_pr/pfet_01v8_lvt.sym} -180 -10 0 0 {name=M1
+W=8
 L=0.5
-nf=2
+nf=4
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -119,13 +119,13 @@ as="expr('int((@nf + 2)/2) * @W / @nf * 0.29')"
 ps="expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')"
 nrd="expr('0.29 / @W ')" nrs="expr('0.29 / @W ')"
 sa=0 sb=0 sd=0
-model=pfet_01v8
+model=pfet_01v8_lvt
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 180 -10 0 1 {name=M2
-W=4
+C {sky130_fd_pr/pfet_01v8_lvt.sym} 180 -10 0 1 {name=M2
+W=8
 L=0.5
-nf=2
+nf=4
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -133,7 +133,7 @@ as="expr('int((@nf + 2)/2) * @W / @nf * 0.29')"
 ps="expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')"
 nrd="expr('0.29 / @W ')" nrs="expr('0.29 / @W ')"
 sa=0 sb=0 sd=0
-model=pfet_01v8
+model=pfet_01v8_lvt
 spiceprefix=X
 }
 C {lab_wire.sym} -240 -10 0 0 {name=p2 sig_type=std_logic lab=inp
