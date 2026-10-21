@@ -63,7 +63,7 @@ einn inn cm d 0 -0.5
 cx x 0 5f
 cy y 0 5f
 .control
-foreach c 0 0.3 0.6 0.9 1.0 1.1 1.2
+foreach c 0.3 0.4 0.5 0.6 0.7 0.8
  alter vcm dc = $c
  alter vd dc = 0.0004
  tran 0.01n 100n
