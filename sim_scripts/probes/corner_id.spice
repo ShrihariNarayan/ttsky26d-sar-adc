@@ -1,0 +1,17 @@
+* raw device drive per corner at -40C
+.lib /foss/pdks/sky130A/libs.tech/combined/sky130.lib.spice tt
+.temp -40
+vs s 0 1.0
+vg g 0 0
+vd d 0 0.5
+xp d g s s sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1
+vgn gn 0 1.0
+vdn dn 0 0.5
+xn dn gn 0 0 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1
+.control
+op
+let ip_uA = i(vd)*1e6
+let in_uA = -i(vdn)*1e6
+print ip_uA in_uA
+.endc
+.end

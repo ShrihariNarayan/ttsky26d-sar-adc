@@ -1,0 +1,43 @@
+* Monte Carlo input offset of comparator_sa (tt_mm, 27C)
+.lib /foss/pdks/sky130A/libs.tech/combined/sky130.lib.spice tt_mm
+.include comp_sub.spice
+vvdd vdd 0 1.8
+vvss vss 0 0
+vclk clk 0 pulse 0 1.8 50n 0.1n 0.1n 49.8n 100n
+vcm cm 0 dc 0.6
+vd d 0 dc 0
+einp inp cm d 0 0.5
+einn inn cm d 0 -0.5
+x1 inp VDD inn clk VSS X Y comparator_sa
+cx x 0 5f
+cy y 0 5f
+.control
+setseed 8
+set run = 1
+dowhile $run <= 20
+  reset
+  foreach c 0 0.6 1.0
+    alter vcm dc = $c
+    set lo = -0.02
+    set hi = 0.02
+    repeat 12
+      let midv = ($lo + $hi)/2
+      set mid = $&midv
+      alter vd dc = $mid
+      tran 0.05n 100n
+      meas tran yf find v(y) at=99n
+      if yf > 0.9
+        set hi = $mid
+      else
+        set lo = $mid
+      end
+      destroy all
+    end
+    let o = ($lo + $hi)/2*1000
+    echo run $run cm $c off_mV $&o
+  end
+  let rv = $run + 1
+  set run = $&rv
+end
+.endc
+.end
