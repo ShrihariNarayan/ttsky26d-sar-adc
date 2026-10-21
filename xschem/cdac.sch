@@ -137,9 +137,9 @@ N 2720 -70 2720 -30 {lab=VSS}
 N 2720 -220 2720 -130 {lab=vtop}
 N -480 -220 3100 -220 {lab=vtop}
 C {sky130_fd_pr/nfet_01v8.sym} -680 270 0 0 {name=MN7
-W=2
+W=16
 L=0.15
-nf=1
+nf=4
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -151,9 +151,9 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} -680 130 0 0 {name=MP7
-W=4
+W=32
 L=0.35
-nf=1
+nf=8
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -173,9 +173,9 @@ C {lab_wire.sym} -570 210 2 0 {name=p11 sig_type=std_logic lab=b7
 }
 C {sky130_fd_pr/cap_mim_m3_1.sym} -480 -100 0 0 {name=C7 model=cap_mim_m3_1 W=1.8 L=1.8 MF=128 spiceprefix=X}
 C {sky130_fd_pr/nfet_01v8.sym} -280 270 0 0 {name=MN6
-W=1
+W=8
 L=0.15
-nf=1
+nf=2
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -187,9 +187,9 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} -280 130 0 0 {name=MP6
-W=2
+W=16
 L=0.35
-nf=1
+nf=4
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -213,7 +213,7 @@ C {lab_wire.sym} -570 130 2 0 {name=p7 sig_type=std_logic lab=Vref
 C {lab_wire.sym} -170 130 2 0 {name=p8 sig_type=std_logic lab=Vref
 }
 C {sky130_fd_pr/nfet_01v8.sym} 120 270 0 0 {name=MN5
-W=0.5
+W=4
 L=0.15
 nf=1
 mult=1
@@ -227,9 +227,9 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 120 130 0 0 {name=MP5
-W=1
+W=8
 L=0.35
-nf=1
+nf=2
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -251,7 +251,7 @@ C {sky130_fd_pr/cap_mim_m3_1.sym} 320 -100 0 0 {name=C5 model=cap_mim_m3_1 W=1.8
 C {lab_wire.sym} 230 130 2 0 {name=p15 sig_type=std_logic lab=Vref
 }
 C {sky130_fd_pr/nfet_01v8.sym} 520 270 0 0 {name=MN4
-W=0.5
+W=2
 L=0.15
 nf=1
 mult=1
@@ -265,7 +265,7 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 520 130 0 0 {name=MP4
-W=1
+W=4
 L=0.35
 nf=1
 mult=1

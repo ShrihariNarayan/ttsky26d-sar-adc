@@ -32,6 +32,14 @@ N 150 -150 180 -150 {lab=VSS}
 N 150 -130 180 -130 {lab=vtop}
 N -210 -170 -150 -170 {lab=phi}
 N -210 -150 -150 -150 {lab=vin}
+N 980 -130 1060 -130 {lab=VSS}
+N 1060 -130 1060 -80 {lab=VSS}
+N 980 -80 1060 -80 {lab=VSS}
+N 980 -100 980 -60 {lab=VSS}
+N 980 -200 980 -160 {lab=VSS}
+N 730 -110 920 -110 {lab=Vref}
+N 920 -130 920 -110 {lab=Vref}
+N 920 -130 940 -130 {lab=Vref}
 C {bootstrap_switch.sym} 0 -150 0 0 {name=x2}
 C {vcm_gen.sym} 0 10 0 0 {name=x4}
 C {lab_wire.sym} 340 -110 0 0 {name=p8 sig_type=std_logic lab=dn4
@@ -84,3 +92,19 @@ C {opin.sym} 460 -640 0 0 {name=p28 lab=comp}
 C {ipin.sym} -170 -780 0 0 {name=p29 lab=phi}
 C {ipin.sym} -170 -740 0 0 {name=p30 lab=clk}
 C {ipin.sym} -170 -690 0 0 {name=p31 lab=vin}
+C {sky130_fd_pr/nfet_01v8.sym} 960 -130 0 0 {name=MCdec
+W=240
+L=5
+nf=24
+mult=1
+ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
+pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
+as="expr('int((@nf + 2)/2) * @W / @nf * 0.29')"
+ps="expr('2*int((@nf + 2)/2) * (@W / @nf + 0.29)')"
+nrd="expr('0.29 / @W ')" nrs="expr('0.29 / @W ')"
+sa=0 sb=0 sd=0
+model=nfet_01v8
+spiceprefix=X
+}
+C {lab_wire.sym} 980 -200 0 0 {name=p33 sig_type=std_logic lab=VSS}
+C {lab_wire.sym} 980 -60 2 0 {name=p34 sig_type=std_logic lab=VSS}
