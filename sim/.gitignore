@@ -1,0 +1,10 @@
+*.so
+*_obj_dir/
+run.cir
+base.cir
+dbg.cir
+d2.ctl
+debug01.ctl
+core_*.spice
+xcore.inc
+*.raw
