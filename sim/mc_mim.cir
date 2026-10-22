@@ -1,0 +1,45 @@
+* mc_mim.cir -- ngspice cross-check of the MiM mismatch the Python MC assumed.
+* Three measurements per seed (AC, C = Im(I)/(2*pi*f)):
+*   c1  : one 1.8x1.8 unit                          -> expect sigma ~1.56 %
+*   c16 : 16 SEPARATE units in parallel (like layout) -> expect sigma ~1.56/4 = 0.39 %
+*   cm16: ONE instance with m=16 (how xschem netlists C4) -> shows how ngspice treats m=
+.lib /foss/pdks/sky130A/libs.tech/combined/sky130.lib.spice tt_mm
+v1  n1  0 dc 0 ac 1
+x1  n1  0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+v16 n16 0 dc 0 ac 1
+xa0 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa1 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa2 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa3 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa4 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa5 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa6 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa7 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa8 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xa9 n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xaa n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xab n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xac n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xad n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xae n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+xaf n16 0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=1
+vm  nm  0 dc 0 ac 1
+xm  nm  0 sky130_fd_pr__cap_mim_m3_1 W=1.8 L=1.8 m=16
+.control
+setseed 5
+set run = 1
+dowhile $run <= 200
+  reset
+  ac lin 1 1k 1k
+  let k = 1/(2*pi*1k)*1e15
+  let c1 = abs(imag(i(v1)))*k
+  let c16 = abs(imag(i(v16)))*k
+  let cm = abs(imag(i(vm)))*k
+  echo mc $&c1 $&c16 $&cm
+  destroy all
+  let rv = $run + 1
+  set run = $&rv
+end
+quit
+.endc
+.end
