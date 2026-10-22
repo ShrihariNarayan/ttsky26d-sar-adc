@@ -433,15 +433,17 @@ MACRO tt_um_shriharinarayan_sar_adc
   END VGND
   OBS
       LAYER nwell ;
-        RECT 19.735 19.735 148.365 172.835 ;
+        RECT 77.570 150.635 142.350 213.470 ;
       LAYER li1 ;
-        RECT 19.915 19.915 148.185 172.655 ;
+        RECT 77.760 150.635 142.160 213.365 ;
       LAYER met1 ;
-        RECT 20.455 20.595 147.645 172.175 ;
+        RECT 77.760 150.480 142.160 213.520 ;
+      LAYER met2 ;
+        RECT 78.770 148.000 141.150 218.000 ;
       LAYER met3 ;
-        RECT 20.000 20.000 64.160 42.400 ;
+        RECT 93.290 150.555 127.375 213.445 ;
       LAYER met4 ;
-        RECT 20.395 20.060 64.140 42.340 ;
+        RECT 93.280 150.480 98.180 213.520 ;
   END
 END tt_um_shriharinarayan_sar_adc
 END LIBRARY
