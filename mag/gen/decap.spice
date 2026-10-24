@@ -1,0 +1,3 @@
+.subckt decap Vref VSS
+XMCdec VSS Vref VSS VSS sky130_fd_pr__nfet_01v8 L=5 W=240 nf=24
+.ends
