@@ -1,0 +1,26 @@
+check: c18 caps=9 (expect 9), ic bsource=1 (expect 1)
+10:59 c20 start
+11:24 c20: line fit: offset -0.691 LSB, slope +1.924 LSB/V   ->  max |INL| 0.110 LSB
+      vin~0.05  mean_err -0.500 LSB  (n=32)  INL +0.095 LSB
+      vin~0.20  mean_err -0.312 LSB  (n=32)  INL -0.006 LSB
+      vin~0.40  mean_err -0.031 LSB  (n=32)  INL -0.110 LSB
+      vin~0.60  mean_err +0.406 LSB  (n=32)  INL -0.057 LSB
+      vin~0.80  mean_err +0.844 LSB  (n=32)  INL -0.004 LSB
+      vin~0.95  mean_err +1.219 LSB  (n=32)  INL +0.082 LSB
+11:24 c18 start
+11:53 c18: line fit: offset -0.719 LSB, slope +2.126 LSB/V   ->  max |INL| 0.113 LSB
+      vin~0.05  mean_err -0.500 LSB  (n=32)  INL +0.113 LSB
+      vin~0.20  mean_err -0.312 LSB  (n=32)  INL -0.019 LSB
+      vin~0.40  mean_err +0.031 LSB  (n=32)  INL -0.100 LSB
+      vin~0.60  mean_err +0.469 LSB  (n=32)  INL -0.088 LSB
+      vin~0.80  mean_err +0.969 LSB  (n=32)  INL -0.013 LSB
+      vin~0.95  mean_err +1.406 LSB  (n=32)  INL +0.106 LSB
+11:53 c20_ic start
+12:10 c20_ic: line fit: offset -0.252 LSB, slope +1.067 LSB/V   ->  max |INL| 0.051 LSB
+      vin~0.05  mean_err -0.156 LSB  (n=32)  INL +0.042 LSB
+      vin~0.20  mean_err -0.031 LSB  (n=32)  INL +0.007 LSB
+      vin~0.40  mean_err +0.125 LSB  (n=32)  INL -0.050 LSB
+      vin~0.60  mean_err +0.344 LSB  (n=32)  INL -0.044 LSB
+      vin~0.80  mean_err +0.594 LSB  (n=32)  INL -0.007 LSB
+      vin~0.95  mean_err +0.812 LSB  (n=32)  INL +0.051 LSB
+12:10 DONE
