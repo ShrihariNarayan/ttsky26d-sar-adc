@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1792828471
+timestamp 1792931913
 << checkpaint >>
 rect -11260 -11260 41260 41260
 << error_s >>
@@ -1678,20 +1678,20 @@ use sky130_fd_pr__nfet_01v8_NK2ZG9  MB4
 timestamp 1792828457
 transform 1 0 4666 0 1 357
 box -211 -410 211 410
-use sky130_fd_pr__nfet_01v8_34VMYE  MI1N
-timestamp 1792828457
+use sky130_fd_pr__nfet_01v8_6ZC5G7  MI1N
+timestamp 1792931913
 transform 1 0 5298 0 1 257
 box -211 -310 211 310
-use sky130_fd_pr__pfet_01v8_VJT448  MI1P
-timestamp 1792828457
+use sky130_fd_pr__pfet_01v8_5YQU8J  MI1P
+timestamp 1792931913
 transform 1 0 5298 0 1 1486
 box -211 -419 211 419
-use sky130_fd_pr__nfet_01v8_34VMYE  MI2N
-timestamp 1792828457
+use sky130_fd_pr__nfet_01v8_F2GPUV  MI2N
+timestamp 1792931913
 transform 1 0 3718 0 1 257
 box -211 -310 211 310
-use sky130_fd_pr__pfet_01v8_VJT448  MI2P
-timestamp 1792828457
+use sky130_fd_pr__pfet_01v8_53SGHS  MI2P
+timestamp 1792931913
 transform 1 0 3718 0 1 1486
 box -211 -419 211 419
 use sky130_fd_pr__nfet_01v8_34VMYE  MIN
