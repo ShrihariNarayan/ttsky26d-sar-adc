@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 RC=$PDK_ROOT/sky130A/libs.tech/magic/sky130A.magicrc
 SETUP=$PDK_ROOT/sky130A/libs.tech/netgen/sky130A_setup.tcl
 SCH=../xschem/simulation/adc_core.spice
-for b in comparator vcm_gen cdac decap; do
+for b in comparator vcm_gen cdac decap bootstrap_switch; do
   v=gen/verify_$b.tcl
   magic -dnull -noconsole -rcfile $RC <<EOT > verify_$b.log 2>&1
 source $v
