@@ -166,6 +166,20 @@ def emit_via(kind,x,y,net,pw):
     else:
         if pw: h=.4; emit_rect('m3',x-h,y-h,x+h,y+h,net); emit_rect('m4',x-h,y-h,x+h,y+h,net); newshapes.append(('via3',x-.3,y-.3,x+.3,y+.3,net))
         else: emit_rect('m3',x-.25,y-.25,x+.25,y+.25,net); emit_rect('m4',x-.25,y-.25,x+.25,y+.25,net); newshapes.append(('via3',x-.16,y-.16,x+.16,y+.16,net))
+# per-net keep-outs: vtop and vcm may not cross the comparator; each enters only through a
+# narrow vertical m2 corridor straight down onto its own input pin (comparator bbox 44.74..72.55 x 74.74..97.85)
+CMPBOX=(44.74,74.74,72.55,97.85)
+NETKO={'vtop':[('all',)+CMPBOX,('open_m2',51.85,88.9,52.65,99.0)],
+       'vcm' :[('all',)+CMPBOX,('open_m2',56.15,88.9,56.95,99.0)]}
+def ko_mask(net,l,win):
+    i0,j0,i1,j1=win; M=np.zeros((i1-i0+1,j1-j0+1),bool)
+    for k in NETKO.get(net,[]):
+        kind,x1,y1,x2,y2=k
+        a1=max(i0,int(x1/G)); a2=min(i1,int(x2/G)+1); b1=max(j0,int(y1/G)); b2=min(j1,int(y2/G)+1)
+        if a1>a2 or b1>b2: continue
+        if kind=='all': M[a1-i0:a2-i0+1,b1-j0:b2-j0+1]=True
+        elif kind=='open_m2' and l=='m2': M[a1-i0:a2-i0+1,b1-j0:b2-j0+1]=False
+    return M
 def route_net(net,groups,margin=25.0):
     """groups: list of lists of (layer, rect) terminal shapes; connects all groups into one tree"""
     cls='pwr' if net in POWER else 'sig'; hw=PWR if cls=='pwr' else SIG
@@ -182,6 +196,7 @@ def route_net(net,groups,margin=25.0):
             vb=(mp[l][1][i0:i1+1,j0:j1+1]-own_count(net,l,(PWR if cls=='pwr' else VPAD)[l],win))>0
             # tile border
             e=int(math.ceil((hw[l]+.2)/G)); wb[:max(0,e-i0),:]=True; wb[max(0,NX-e-i0):,:]=True; wb[:,:max(0,e-j0)]=True; wb[:,max(0,NY-e-j0):]=True
+            K=ko_mask(net,l,win); wb=wb|K; vb=vb|K
             fl[li]=wb.astype(np.uint8)|(vb.astype(np.uint8)<<1)
             fl[li]|=((inside_pts([r for g in tree for (ll,r) in g if ll==l],win,hw[l])&~wb).astype(np.uint8)<<3)
         tmask=[]
