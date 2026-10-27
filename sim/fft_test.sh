@@ -2,6 +2,7 @@
 # fft_test.sh CORE [TAG] -- sine-wave dynamic test (point 5): 128 back-to-back conversions at 1 MS/s,
 # coherent input fin = 13/128 * 1 MHz = 101.5625 kHz, 0.5 V +- 0.48 V (Vref = 1.0 V, ~ -0.36 dBFS),
 # through the 500 ohm pad model. Writes fft_<TAG>.dat (time, done, c7..c0); then run fft_analyze.py.
+# env: NOISE SEED (input-referred noise in series with the sine source, see nzgen.py)
 # env: OPTS (extra .options line, e.g. '.options method=gear')  RREF / RIN (500: pad model; 1m = ideal source)  CORNER (tt) TEMP (27) STEP (1n) DECAP (1f: the decap is already in the layout netlist) N (128) M (13)
 core=$1; tag=${2:-fft}
 CORNER=${CORNER:-tt}; TEMP=${TEMP:-27}; STEP=${STEP:-1n}; DECAP=${DECAP:-1f}; N=${N:-128}; M=${M:-13}
@@ -16,6 +17,13 @@ sed -e "s#sky130.lib.spice tt\$#sky130.lib.spice $CORNER\n.temp $TEMP#" \
     -e "s/^rref vrefx Vref 500/rref vrefx Vref ${RREF:-500}/" \
     -e "s/^rin vinx vin 500/rin vinx vin ${RIN:-500}/" base.cir > run_${tag}.cir
 [ -n "$OPTS" ] && echo "$OPTS" >> run_${tag}.cir
+# optional input-referred noise (NOISE = rms volts, e.g. 1m; SEED): a new Gaussian value per conversion,
+# applied in series with the sine source; the sampled noise is exactly NOISE rms (see nzgen.py)
+if [ -n "$NOISE" ]; then
+  python3 nzgen.py $NOISE ${SEED:-1} $TSTOP > nz_${tag}.inc
+  sed -i "s/^rin vinx vin /rin vinn vin /" run_${tag}.cir
+  sed -i "/^rin vinn vin /i .include nz_${tag}.inc" run_${tag}.cir
+fi
 cat >> run_${tag}.cir <<EOC
 .control
 set num_threads=1

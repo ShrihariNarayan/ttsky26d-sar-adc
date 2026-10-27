@@ -1,0 +1,107 @@
+
+Magic 8.3 revision 681 - Compiled on Tue Aug 25 11:43:38 AM CEST 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+WARNING: RLIMIT_NOFILE is above 1024 and Tcl_Version<9 this may cause runtime issues [rlim_cur=1048576]
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading "../gds_ant.tcl" from command line.
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 3.0
+Library name: tt_um_shriharinarayan_sar_adc
+Reading "sky130_fd_pr__res_xhigh_po_1p41_BDUJGV".
+Reading "sky130_fd_pr__cap_mim_m3_1_CGC2GW".
+Reading "vcm_gen".
+Reading "sky130_fd_sc_hd__decap_3".
+Reading "sky130_fd_sc_hd__fill_2".
+Reading "sky130_fd_sc_hd__buf_16".
+Reading "sky130_fd_sc_hd__tapvpwrvgnd_1".
+Reading "sky130_fd_sc_hd__fill_1".
+Reading "sky130_fd_sc_hd__decap_4".
+Reading "sky130_fd_sc_hd__buf_2".
+Reading "sky130_fd_sc_hd__clkdlybuf4s50_1".
+Reading "sky130_fd_sc_hd__dlygate4sd3_1".
+Reading "sky130_fd_sc_hd__dfrtn_1".
+Reading "sky130_fd_sc_hd__buf_4".
+Reading "sky130_fd_sc_hd__decap_8".
+Reading "sky130_ef_sc_hd__decap_12".
+Reading "sky130_fd_sc_hd__a21oi_1".
+Reading "sky130_fd_sc_hd__mux2_1".
+Reading "sky130_fd_sc_hd__clkbuf_16".
+Reading "sky130_fd_sc_hd__clkinv_1".
+Reading "sky130_fd_sc_hd__and2_0".
+Reading "sky130_fd_sc_hd__nor2_1".
+Reading "sky130_fd_sc_hd__a221o_1".
+Reading "sky130_fd_sc_hd__nand2_1".
+Reading "sky130_fd_sc_hd__nand2b_1".
+Reading "sky130_fd_sc_hd__a2bb2oi_1".
+Reading "sky130_fd_sc_hd__inv_1".
+Reading "sky130_fd_sc_hd__dfstp_2".
+Reading "sky130_fd_sc_hd__mux2i_1".
+Reading "sky130_fd_sc_hd__o22ai_1".
+Reading "sky130_fd_sc_hd__decap_6".
+Reading "sky130_fd_sc_hd__a22o_1".
+Reading "sky130_fd_sc_hd__clkbuf_2".
+Reading "sky130_fd_sc_hd__a21o_1".
+Reading "sky130_fd_sc_hd__a311oi_1".
+Reading "sky130_fd_sc_hd__or2_0".
+Reading "sky130_fd_sc_hd__o32a_1".
+Reading "sky130_fd_sc_hd__nor3b_1".
+Reading "sar_logic".
+Reading "sky130_fd_pr__nfet_01v8_WLECUA".
+Reading "decap".
+Reading "sky130_fd_pr__nfet_01v8_5K744B".
+Reading "sky130_fd_pr__cap_mim_m3_1_LFDY3D".
+Reading "decap2".
+Reading "sky130_fd_pr__nfet_01v8_NK2ZG9".
+Reading "sky130_fd_pr__nfet_01v8_87U5T8".
+Reading "sky130_fd_pr__pfet_01v8_VJT448".
+Reading "sky130_fd_pr__nfet_01v8_34VMYE".
+Reading "sky130_fd_pr__pfet_01v8_53SGHS".
+Reading "sky130_fd_pr__nfet_01v8_F2GPUV".
+Reading "sky130_fd_pr__pfet_01v8_5YQU8J".
+Reading "sky130_fd_pr__nfet_01v8_6ZC5G7".
+Reading "sky130_fd_pr__pfet_01v8_7HN6Y2".
+Reading "sky130_fd_pr__pfet_01v8_WXVH9J".
+Reading "sky130_fd_pr__pfet_01v8_GJK8GW".
+Reading "comparator".
+Reading "sky130_fd_pr__pfet_01v8_lvt_HGBDVL".
+Reading "sky130_fd_pr__pfet_01v8_lvt_65C8BA".
+Reading "sky130_fd_pr__pfet_01v8_lvt_EXY38E".
+Reading "sky130_fd_pr__pfet_01v8_lvt_DQLGWQ".
+Reading "sky130_fd_pr__pfet_01v8_lvt_TEQ27F".
+Reading "sky130_fd_pr__nfet_01v8_TB4QGU".
+Reading "sky130_fd_pr__nfet_01v8_ZXU89W".
+Reading "sky130_fd_pr__nfet_01v8_JSF6K7".
+Reading "sky130_fd_pr__nfet_01v8_PHAC7Z".
+Reading "cdac".
+Reading "sky130_fd_pr__cap_mim_m3_1_QUBC75".
+Reading "bootstrap_switch".
+Reading "tt_um_shriharinarayan_sar_adc".
+Extracting tflat into tflat.ext:
+Processing tflat
+tflat: 418 warnings
+Total of 418 warnings.
+Reading extract file.
+Warning:  Ports "VDPWR" and "uio_oe[0]" are electrically shorted.
+Building flattened netlist.
+Running antenna checks.
+   100 gates analyzed.
+   200 gates analyzed.
+   300 gates analyzed.
+   400 gates analyzed.
+   500 gates analyzed.
+   600 gates analyzed.
+antennacheck finished.
+ANT_DONE
