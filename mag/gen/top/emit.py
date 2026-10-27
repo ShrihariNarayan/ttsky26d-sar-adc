@@ -1,6 +1,6 @@
 import json
-BB={'comparator':(-0.265,-0.265),'cdac':(-1.8,-0.6),'bootstrap_switch':(-0.55,-0.265),'vcm_gen':(-0.265,-0.4),'decap':(-0.77,-0.265)}
-OFF={'cdac':(77.2,48.5),'bootstrap_switch':(128.26,9.0),'decap':(80.0,9.0),'vcm_gen':(10.0,9.0),'comparator':(45.0,75.0)}
+BB={'comparator':(-0.265,-0.265),'cdac':(-1.8,-0.6),'bootstrap_switch':(-0.55,-0.265),'vcm_gen':(-0.265,-0.4),'decap':(-0.77,-0.265),'decap2':(-0.77,-0.265)}
+OFF={'cdac':(77.2,48.5),'bootstrap_switch':(128.26,9.0),'decap':(80.0,9.0),'vcm_gen':(10.0,9.0),'comparator':(45.0,75.0),'decap2':(8.5,100.0)}
 f=lambda v:f'{v:.3f}um'
 L=['gds readonly true','gds rescale false','gds read sar_logic.gds','load tt_um_shriharinarayan_sar_adc','select clear']
 for c,(ox,oy) in OFF.items():

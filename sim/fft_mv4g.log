@@ -1,0 +1,5 @@
+20:21 fft mv4g start: tt 27C fin=72265.625000 Hz N=512 tstop=516.000u
+20:38 fft mv4g sim done
+analog supply current: VDD -2.3 uA, Vref -11.2 uA (sign: source convention)
+conversions captured: 422
+not enough conversions

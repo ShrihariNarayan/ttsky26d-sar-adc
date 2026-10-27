@@ -42,11 +42,11 @@ for lst in buck.values():
     for a,b in itertools.combinations(lst,2):
         if related(raw[a][0],raw[b][0]) and touch(raw[a],raw[b]): union(a,b)
 # label points -> nets
-OFF={'cdac':(77.2,48.5),'bootstrap_switch':(128.26,9.0),'decap':(80.0,9.0),'vcm_gen':(10.0,9.0),'comparator':(45.0,75.0)}
+OFF={'cdac':(77.2,48.5),'bootstrap_switch':(128.26,9.0),'decap':(80.0,9.0),'vcm_gen':(10.0,9.0),'comparator':(45.0,75.0),'decap2':(8.5,100.0)}
 NETMAP={'comparator':{'inp':'vtop','inn':'vcm','outp':'comp','outn':'compn','VDD':'VDD','VSS':'VSS','clk':'clk'},
         'cdac':{**{f'dn{k}':f'dn{k}' for k in range(8)},'Vref':'Vref','VSS':'VSS','vtop':'vtop','VDD':'VDD'},
         'bootstrap_switch':{'phi':'phi','vin':'vin','vout':'vtop','VDD':'VDD','VSS':'VSS'},
-        'vcm_gen':{'vcm':'vcm','Vref':'Vref','VSS':'VSS'},'decap':{'Vref':'Vref','VSS':'VSS'}}
+        'vcm_gen':{'vcm':'vcm','Vref':'Vref','VSS':'VSS'},'decap':{'Vref':'Vref','VSS':'VSS'},'decap2':{'Vref':'Vref','VSS':'VSS','vcm':'vcm','VSSB':'VSS'}}
 LMAP={'metal1':'m1','metal2':'m2','metal3':'m3','metal4':'m4','via1':'via1','via2':'via2'}
 compnet={}
 for c,(ox,oy) in OFF.items():

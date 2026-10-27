@@ -8,6 +8,7 @@ STEP=${STEP:-1n}
 DECAP=${DECAP:-10p}   # on-chip Vref decap; DECAP=0 removes it
 NP=${NP:-$(nproc)}
 CORNER=${CORNER:-tt}   # tt ss ff sf fs
+# OPTS: extra netlist line, e.g. '.options method=gear' (Gear avoids trapezoidal ringing)
 TEMP=${TEMP:-27}
 # pin order follows the given netlist (xschem may reorder pins on re-netlist)
 grep -i "^\.subckt adc_core" $core | sed 's/^\.subckt adc_core/xcore/I; s/$/ adc_core/' > xcore_${tag}.inc
@@ -17,6 +18,7 @@ for v in "$@"; do
       -e "s/^rref vrefx Vref 500/rref vrefx Vref 500\ncdec Vref 0 $DECAP/" \
       -e "s/^\.include xcore.inc/.include xcore_${tag}.inc/" \
       -e "s/^vinx vinx 0 dc 0.6/vinx vinx 0 dc $v/" base.cir > run_${tag}_$v.cir
+  [ -n "$OPTS" ] && echo "$OPTS" >> run_${tag}_$v.cir
   sed -e "s/^tran 0.1n 2.2u/set num_threads=1\ntran $STEP 2.2u/" single.ctl >> run_${tag}_$v.cir
 done
 printf '%s\n' "$@" | xargs -P $NP -I{} sh -c "echo {} \$(ngspice -b run_${tag}_{}.cir 2>&1 | grep '^code' | awk '{print \$2}')" | sort -g

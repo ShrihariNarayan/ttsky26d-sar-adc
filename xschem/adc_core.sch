@@ -93,9 +93,9 @@ C {ipin.sym} -170 -780 0 0 {name=p29 lab=phi}
 C {ipin.sym} -170 -740 0 0 {name=p30 lab=clk}
 C {ipin.sym} -170 -690 0 0 {name=p31 lab=vin}
 C {sky130_fd_pr/nfet_01v8.sym} 960 -130 0 0 {name=MCdec
-W=240
+W=840
 L=5
-nf=24
+nf=84
 mult=1
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
@@ -108,3 +108,8 @@ spiceprefix=X
 }
 C {lab_wire.sym} 980 -200 0 0 {name=p33 sig_type=std_logic lab=VSS}
 C {lab_wire.sym} 980 -60 2 0 {name=p34 sig_type=std_logic lab=VSS}
+N 1200 -200 1200 -160 {lab=vcm}
+N 1200 -100 1200 -60 {lab=VSS}
+C {sky130_fd_pr/cap_mim_m3_1.sym} 1200 -130 0 0 {name=Ccm2 model=cap_mim_m3_1 W=30 L=30 MF=3 spiceprefix=X}
+C {lab_wire.sym} 1200 -200 0 0 {name=p90 sig_type=std_logic lab=vcm}
+C {lab_wire.sym} 1200 -60 2 0 {name=p91 sig_type=std_logic lab=VSS}
