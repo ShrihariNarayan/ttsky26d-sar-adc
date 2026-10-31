@@ -1,5 +1,5 @@
 #!/bin/bash
-# job_runner.sh -- runs job scripts that Claude drops into sim/jobs/queue/, so simulations run on this
+# job_runner.sh -- runs job scripts placed in sim/jobs/queue/, so simulations run on this
 # Mac (8 cores, reference ngspice) without manual starts. Start ONCE inside the Docker container:
 #     cd /foss/designs/ttsky26d-sar-adc/sim/jobs && nohup bash job_runner.sh > /dev/null 2>&1 &
 # Jobs run from sim/ in name order. Names starting with "x_" use all cores and run alone;

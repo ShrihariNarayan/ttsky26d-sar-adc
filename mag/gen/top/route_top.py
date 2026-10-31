@@ -210,13 +210,13 @@ def route_net(net,groups,margin=25.0):
             tbs.append((max(0,int(min(r[0] for r in xs)/G)-i0),max(0,int(min(r[1] for r in xs)/G)-j0),min(W-1,int(max(r[2] for r in xs)/G)-i0),min(H-1,int(max(r[3] for r in xs)/G)-j0)))
         if not (fl&8).any(): print('  no source pts',net,file=sys.stderr); return False
         if not (fl&4).any(): print('  no target pts',net,[g[0] for g in rem],file=sys.stderr); return False
-        with open('/tmp/claude-0/rin.bin','wb') as f:
+        with open('/tmp/route_rin.bin','wb') as f:
             f.write(struct.pack('7i',W,H,3,2,6,60,len(tbs)))
             for t in tbs: f.write(struct.pack('4i',*t))
             f.write(struct.pack('3i',*DIRS)); f.write(np.ascontiguousarray(fl).tobytes())
-        r=subprocess.run(['./astar','/tmp/claude-0/rin.bin','/tmp/claude-0/rout.bin'],capture_output=True,text=True)
+        r=subprocess.run(['./astar','/tmp/route_rin.bin','/tmp/route_rout.bin'],capture_output=True,text=True)
         print('  ',net,r.stderr.strip(),file=sys.stderr,flush=True)
-        d=open('/tmp/claude-0/rout.bin','rb').read(); n=struct.unpack('i',d[:4])[0]
+        d=open('/tmp/route_rout.bin','rb').read(); n=struct.unpack('i',d[:4])[0]
         if n==0: return False
         path=np.frombuffer(d[4:],np.int32).reshape(n,3); path=[(int(l),int(i)+i0,int(j)+j0) for l,i,j in path]
         # which group was reached?
