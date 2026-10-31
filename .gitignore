@@ -12,3 +12,17 @@ test/gate_level_netlist.v
 *.ext
 *_lay.spice
 lvs_*.out
+
+# design sources: archived on the design-source branch
+mag/
+xschem/
+sim/
+sim_scripts/
+verilog/
+openlane/
+lvs/
+test/
+docs/top_routes.png
+gds/sar_logic.gds
+lef/sar_logic.lef
+*.bak

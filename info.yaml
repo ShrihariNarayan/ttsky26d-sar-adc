@@ -3,7 +3,7 @@ project:
   title:        "8-bit SAR ADC"      # Project title
   author:       "Shrihari"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "An 8-bit single-ended charge-redistribution SAR ADC with a separate sample-and-hold stage"      # One line description of what your project does
+  description:  "8-bit single-ended charge-redistribution SAR ADC with bootstrapped top-plate sampling, 1 MS/s"      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
   clock_hz:     10000000       # Clock frequency in Hz (or 0 if not applicable)
 
