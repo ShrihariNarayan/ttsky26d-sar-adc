@@ -72,15 +72,27 @@ The ADC tracks an ideal quantizer with the same noise to within the test's scatt
 
 ## How to test
 
-1. Apply **Vref** (0.8–1.2 V; 1.0 V nominal) to `ua[1]` from a low-impedance source. The input range is 0 … Vref.
-2. Apply the analog input to `ua[0]`. Use a source impedance of about 1 kΩ or less: the input is sampled onto about 2.4 pF during one clock period.
-3. Set the clock to 10 MHz (or slower; up to 25 MHz with slightly reduced ENOB) and pulse `rst_n` low, then high.
-4. The ADC converts continuously. On each rising edge of `done` (`uio[0]`), read `code[7:0]` on `uo_out[7:0]`. The ideal code is floor(256 · Vin / Vref).
+**Safe limits.** Keep `ua[0]` and `ua[1]` between 0 and 1.2 V. Never drive either above 1.8 V; the input switch is only verified up to 1.2 V.
 
-Suggested checks:
-- Offset and gain: apply two DC levels (e.g. 0.1·Vref and 0.9·Vref) and fit a line.
-- A slow ramp on `ua[0]` with all codes captured gives the INL/DNL histogram.
-- A sine wave near full scale gives the FFT, SNDR and ENOB.
+**Setup**
+1. Apply **Vref** (0.8–1.2 V; 1.0 V nominal) to `ua[1]` from a low-impedance source. Vref draws about 11 µA DC (mostly the on-chip Vcm divider) through the ~500 Ω pad path, so the reference inside the chip sits about 5 mV (≈ 1.3 LSB) below the pin voltage. That shows up as gain error, which is expected.
+2. Apply the input to `ua[0]`, range 0 … Vref, with a source impedance of about 1 kΩ or less. The input is sampled onto about 2.4 pF in one clock period.
+3. Clock: 10 MHz (or slower; up to 25 MHz with slightly reduced ENOB). Pulse `rst_n` low, then high. `ui_in` and `uio_in` are not used.
+
+**Reading the result**
+- The ADC converts continuously; one conversion = 10 clocks (fs = f_clk / 10).
+- `done` (`uio[0]`) goes high for one clock when a conversion finishes. **`code[7:0]` on `uo_out[7:0]` changes on the same clock edge as `done` rises, so sample `uo_out` on the falling edge of `done`.** It then stays stable for the next 9 clocks.
+- Ignore `uo_out` until the first `done` pulse after reset (it reads 0 before that).
+- The input is sampled during the clock cycle right after `done` falls; the switch opens at the next falling clock edge.
+
+**Quick check:** the code should be within about ±3 of floor(256 · Vin / Vref). For example, Vin = 0.25 / 0.50 / 0.75 V with Vref = 1.0 V gives about 64 / 128 / 192. Simulated offset is about −1.5 LSB, and gain error is about +3 LSB per volt.
+
+**Measurements (in order)**
+1. **Offset and gain:** apply two DC levels (e.g. 0.1·Vref and 0.9·Vref), average 1,000 codes each, and fit a line.
+2. **Noise:** hold a DC input and collect about 10,000 codes. The spread of the histogram is the transition noise. Expected input-referred noise is about 0.7–1.0 mV rms, so roughly 2–3 adjacent codes.
+3. **INL/DNL (code-density test):** apply a slow ramp from slightly below 0 to slightly above Vref (or a sine slightly larger than full scale, using the arcsine correction), and collect at least 20 hits per code (> 5,000 conversions). DNL = hits per code / average − 1; INL = running sum.
+4. **Dynamic (FFT):** sine near full scale with coherent sampling: f_in = (M/N) · f_s, with N a power of two and M odd (e.g. N = 4096, M = 293 → about 71.5 kHz at 1 MS/s). Report SNDR, SFDR and ENOB = (SNDR − 1.76)/6.02. Expected about 7.6–7.8 bit.
+5. **Optional bit-weight calibration:** the outputs are the raw bit decisions, so the eight bit weights can be fitted from the ramp or sine data and the code rebuilt as Σ bₖ·Wₖ. This removes static weight errors.
 
 ## External hardware
 
